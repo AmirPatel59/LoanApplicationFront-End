@@ -46,6 +46,10 @@ export default class LoginCs extends Component {
              console.log(response.data)
          });
      }
+     componentDidMount(){
+         this.setState( )
+        return this.props.history.push("/customerHome");
+     }
     render() {
         return (
             <div>

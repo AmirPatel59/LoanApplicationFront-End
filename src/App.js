@@ -7,6 +7,7 @@ import Register from './Component/Register';
 import ViewAllLoan from './Component/ViewAllLoan';
 
 
+
 function App() {
   return (
     <div className="App">
@@ -15,6 +16,8 @@ function App() {
        <Route exact path="/" component={LoginCs}></Route>
        <Route  path="/register" component={Register}></Route>
        <Route  path="/viewAllLoan" component={ViewAllLoan}></Route>
+       <Route  path="/LoginIs" component={LoginLI}></Route>
+
      </Switch>
      </Router>
     </div>
