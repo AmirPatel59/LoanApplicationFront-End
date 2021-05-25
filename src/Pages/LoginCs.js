@@ -20,33 +20,54 @@ export default class LoginCs extends Component {
         this.state = {
             email:"",
             password:"",
-          
+            emailError:'',
+            passwordError:''  
         }
-        // this.changeEmailHandler = this.changeEmailHandler.bind(this);
-        // this.changepasswordHandler = this.changepasswordHandler.bind(this);
-        // this.saveFlight = this.saveFlight.bind(this);
-        // this.validate = this.validate.bind(this);
+        
       }
 
+      validate =()=>{
+       
+        let emailError="";
+        let passwordError="";
+      
+        if(!this.state.email){
+            emailError="Please enter the Email-Id";
+        }
+        
+        if(this.state.password==""){
+            passwordError="Please enter password";
+        }
+        if(emailError ||  passwordError ){
+            this.setState({
+                emailError,passwordError
+            })
+            return false;
+        }
+        return true;
 
+    }
     changeEmailHandler=(event)=>{
-        this.setState({email:event.target.value})        
+        this.setState({email:event.target.value,emailError:''})        
     }
 
     changePasswordHandler=(event)=>{
-        this.setState({password:event.target.value})
+        this.setState({password:event.target.value,passwordError:''})
     }
 
     login=(e)=>{
         e.preventDefault();
-        alert(this.state.email)
-        alert(this.state.password)
+        const isValid=this.validate();
+        if(isValid){
         CustomerService.login(this.state.email,this.state.password).then((response)=>{
              if(response.data!=null){
                 localStorage.setItem("customerId", response.data.customerId);
                 this.props.history.push(`applyLoan`);
              }
-         });
+         }).catch(error=>{alert("Invalid Credintials")});
+        }else{
+            alert("Enter Proper Credentials")
+        }
      }
     render() {
         return (
@@ -54,7 +75,7 @@ export default class LoginCs extends Component {
                 <div className="limiter">
                     <div className="container-login100" style={{ backgroundImage: `url('/images/bg-01.jpg')` }}>
                         <div className="wrap-login100 p-t-30 p-b-50">
-                            <span className="login100-form-title p-b-41">
+                            <span className="login100-form-title p-b-41" >
                                 Customer Account Login
 				</span>
                             <form className="login100-form validate-form p-b-33 p-t-5">
@@ -62,11 +83,13 @@ export default class LoginCs extends Component {
                                 <div className="wrap-input100 validate-input" data-validate="Enter username">
                                     <input className="input100" type="text" name="username" placeholder="User name" onChange={this.changeEmailHandler} />
                                     <span className="focus-input100" data-placeholder="&#xe82a;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.emailError}</div>
                                 </div>
 
                                 <div className="wrap-input100 validate-input" data-validate="Enter password">
                                     <input className="input100" type="password" name="pass" placeholder="Password" onChange={this.changePasswordHandler} />
                                     <span className="focus-input100" data-placeholder="&#xe80f;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.passwordError}</div>
                                 </div>
 
                                 <div className="container-login100-form-btn m-t-32">

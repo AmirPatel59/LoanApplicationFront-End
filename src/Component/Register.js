@@ -23,40 +23,105 @@ export default class Register extends Component {
                 firstName: '',
                 gender: '',
                 lastName: '',
-                mobileNumber: 0,
-                password: ''
+                mobileNumber: '',
+                password: '',
+                ageError: '',
+                emailError: "",
+                firstNameError: '',
+                genderError: '',
+                lastNameError: '',
+                mobileNumberError: '',
+                passwordError: ''
         }
     }
+    validate(){
+              let ageError= '';
+              let emailError= "";
+              let firstNameError= '';
+              let genderError='';
+              let lastNameError= '';
+              let mobileNumberError= '';
+              let passwordError= '';
+            if(this.state.firstName===""){
+                firstNameError="Please Enter the First Name";
+            }
+            else if(this.state.firstName.length<3){
+                firstNameError="First Name should be more than 3 characters";
+            }
+            if(this.state.lastName===""){
+                lastNameError="Please Enter the Last Name";
+            }
+            else if(this.state.lastName.length<3){
+                lastNameError="Last Name should be more than 3 characters";
+            }
+            if(!this.state.age){
+                ageError="Please Enter Age"
+            }
+            else if(isNaN(this.state.age)){
+                ageError="Enter Age in Digits"
+            }
+            if(!this.state.gender){
+                genderError="Please Enter Gender"
+            }
+            if(this.state.email===""){
+                emailError="please enter EmailId";
+            }
+            else if(!this.state.email.match( /^[a-zA-Z0-9.!#$%&'+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$/)){
+                emailError="please enter valid EmailId";
+            }
     
+            if(this.state.password===""){
+                passwordError="please set the password";
+            }
+            else if(this.state.password.length<6){
+                passwordError="password should be more than 6 characters";
+            }
+            
+            if(this.state.mobileNumber.value===""){
+                mobileNumberError="please enter your mobile number";
+            }
+            else if(!this.state.mobileNumber.match(/^\d{10}$/)) {
+                mobileNumberError="please enter valid mobile number"; 
+        }
+            if(firstNameError || lastNameError || ageError || genderError || emailError || passwordError || mobileNumberError){
+                this.setState({
+                    firstNameError,lastNameError,ageError,genderError,emailError,passwordError,mobileNumberError
+                })
+                return false;
+            }
+            return true;
+    }
     changeEmailHandler=(event)=>{
-        this.setState({email:event.target.value})        
+        this.setState({email:event.target.value,emailError:''})        
     }
 
     changePasswordHandler=(event)=>{
-        this.setState({password:event.target.value})
+        this.setState({password:event.target.value,passwordError:''})
     }
 
     fNameHandler=(event)=>{
-        this.setState({firstName:event.target.value})
+        this.setState({firstName:event.target.value,firstNameError:''})
     }
 
     lNameHandler=(event)=>{
-        this.setState({lastName:event.target.value})
+        this.setState({lastName:event.target.value,lastNameError:''})
     }
     ageHandler=(event)=>{
-        this.setState({age:event.target.value})
+        this.setState({age:event.target.value,ageError:''})
     }
 
     genderHandler=(event)=>{
-        this.setState({gender:event.target.value})
+        this.setState({gender:event.target.value,genderError:''})
     }
 
     mobileHandler=(event)=>{
-        this.setState({mobileNumber:event.target.value})
+        this.setState({mobileNumber:event.target.value,mobileNumberError:''})
     }
 
     register=(e)=>{
         e.preventDefault();
+        const isValid=this.validate();
+        if(isValid){
         let customer={
             age: this.state.age,
                 email: this.state.email,
@@ -71,52 +136,64 @@ export default class Register extends Component {
              alert("customer Added Sucesfully")
              console.log(response.data)
              this.props.history.push('/')
-         });
+         });}
+         else{
+             alert("Wrong Data")
+         }
      }
     render() {   
         return (
-            <div>
-                 <div>
-                    <div className="container-fluid" style={{ backgroundImage: `url('/images/bg-01.jpg')` }}>
-                        <div className="card p-t-30 p-b-50">
-                            <span className="login100-form-title p-b-41">
+                    <div className="limiter">
+                        <div className="container-fluid-login100" style={{ backgroundImage: `url('/images/bg-01.jpg')`}} >
+                        <div className="wrap-login100 p-t-30 p-b-50" style={{width:"50rem",marginLeft:"15.5rem"}}>
+                            <h2 className="login100-form-title p-b-41" style={{color:"black"}}>
                                 Register Customer Account
-				            </span>
-                            <form className="login100-form validate-form p-b-33 p-t-5">
+				            </h2>
+                            <form className="login100-form validate-form p-b-33 p-t-5" >
                                 <div className="row">
                                 <div className="wrap-input100 col-sm-6 validate-input" data-validate="Enter username">
                                     <input className="input100" type="text" name="username" placeholder="Email-Id" onChange={this.changeEmailHandler} />
-                                    <span className="focus-input100" data-placeholder="&#xe82a;"></span>                                    
+                                    <span className="focus-input100" data-placeholder="&#xe818;"></span> 
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.emailError}</div>                                   
                                 </div>
 
                                 <div className="wrap-input100 col-sm-6 validate-input" data-validate="Enter password">
                                     <input className="input100" type="password" name="pass" placeholder="Password" onChange={this.changePasswordHandler} />
                                     <span className="focus-input100" data-placeholder="&#xe80f;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.passwordError}</div>
                                 </div>
-
-                                <div className="wrap-input100 validate-input" data-validate="Enter First Name">
+                                </div>
+                                <div className="row">
+                                <div className="wrap-input100 col-sm-6 validate-input" data-validate="Enter First Name">
                                     <input className="input100" type="text" name="pass" placeholder="First Name" onChange={this.fNameHandler} />
-                                    <span className="focus-input100" data-placeholder="&#xe80f;"></span>
+                                    <span className="focus-input100" data-placeholder="&#xe82a;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.firstNameError}</div>
                                 </div>
-
-                                <div className="wrap-input100 validate-input" data-validate="Enter Last Name">
+                                <div className="wrap-input100 col-sm-6 validate-input" data-validate="Enter Last Name">
                                     <input className="input100" type="text" name="pass" placeholder="Last Name" onChange={this.lNameHandler} />
-                                    <span className="focus-input100" data-placeholder="&#xe80f;"></span>
+                                    <span className="focus-input100" data-placeholder="&#xe82a;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.lastNameError}</div>
                                 </div>
-
-                                <div className="wrap-input100 validate-input" data-validate="Age">
+                                </div>
+                                <div className="row">
+                                <div className="wrap-input100 col-sm-6 validate-input" data-validate="Age">
                                     <input className="input100" type="number" name="pass" placeholder="Age" onChange={this.ageHandler} />
-                                    <span className="focus-input100" data-placeholder="&#xe80f;"></span>
+                                    <span className="focus-input100" data-placeholder="&#xe836;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.ageError}</div>
                                 </div>
-                                <div className="wrap-input100 validate-input" data-validate="Gender">
+                                <div className="wrap-input100 col-sm-6 validate-input" data-validate="Gender">
                                     <input className="input100" type="text" name="pass" placeholder="Gender" onChange={this.genderHandler} />
-                                    <span className="focus-input100" data-placeholder="&#xe80f;"></span>
+                                    <span className="focus-input100" data-placeholder="&#xe82b;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.genderError}</div>
                                 </div>
-                                <div className="wrap-input100 validate-input" data-validate="Mobile Number">
+                                </div>
+                                <div className="row">
+                                <div className="col-sm-12 wrap-input100 validate-input" data-validate="Mobile Number" style={{width:"0.1rem"}}>
                                     <input className="input100" type="mobile" name="mobile" placeholder="Mobile Number" onChange={this.mobileHandler} />
-                                    <span className="focus-input100" data-placeholder="&#xe80f;"></span>
+                                    <span className="focus-input100" data-placeholder="&#xe830;"></span>
+                                    <div style={{fontSize:"2",color:"red",marginLeft:"5.5rem"}}>{this.state.mobileNumberError}</div>
                                 </div>
-
+                                </div>
                                 <div className="container-login100-form-btn m-t-32">
                                     <button className="login100-form-btn" onClick={this.register}>
                                         Register
@@ -125,13 +202,10 @@ export default class Register extends Component {
                                 <div style={{paddingTop:"1.3rem"}}>
                                     <center><NavLink to="/">Back to Login Page</NavLink></center>                                         
                                 </div>
-                            </div>
                             </form>
-                            
-                        </div>
+                            </div> 
                     </div>
-                </div>
-            </div>
+                    </div>                      
         )
     }
 }

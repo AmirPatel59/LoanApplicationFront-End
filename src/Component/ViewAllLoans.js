@@ -27,7 +27,15 @@ export default class ViewAllLoans extends Component {
             <div>
                 <div className="container-fluid mt-4 " >
                     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={{ backgroundImage: `url('/images/bg-01.jpg')` }}>
-                        <h3 className="fst-normal text-center mb-4"><b>Customer Loan Applications</b></h3>
+                        <div className="row">
+                            <div className="col-sm-10">
+                            <h3 className="fst-normal text-center mb-4"><b>Customer Loan Applications</b></h3>
+                            </div>
+                            <div className="col-sm-2">
+                                <button className="btn btn-danger" onClick={()=>this.props.history.push(`LoginIssuer`)}>Log Out</button>
+                            </div>
+                        </div>
+                        
                         <div className="card">
                             <div className="card-body">
 

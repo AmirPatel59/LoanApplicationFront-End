@@ -10,6 +10,7 @@ import LoanApplication from './Pages/LoanApplication';
 import ApplyLoan from './Component/ApplyLoan';
 import Profile from './Component/Profile';
 import Navbar from './Component/Navbar';
+import UpdateCustomer from './Pages/UpdateCustomer';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
        <Route  path="/viewLoan" component={ViewLoan}></Route>
        <Route path="/profile" component={Profile}></Route>
        <Route path='/navbar' component={Navbar}></Route>
+       <Route path="/updateCustomer" component={UpdateCustomer}></Route>
      </Switch>
      </Router>
     </div>

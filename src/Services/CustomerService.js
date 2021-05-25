@@ -19,5 +19,8 @@ import React, { Component } from 'react'
    viewCustomerProfile(customerId){
        return axios.get(`http://localhost:8080/loanApplication/customer/viewCustomer/${customerId}`)
    }
+   updateCustomer(customer){
+       return axios.put(`http://localhost:8080/loanApplication/customer/updateCustomer`,customer)
+   }
 }
 export default new CustomerService;

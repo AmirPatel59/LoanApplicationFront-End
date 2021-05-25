@@ -36,7 +36,7 @@ export default class ViewLoanCustomer extends Component {
    componentDidMount() { 
     LoanIssuerService.viewLoan(this.state.loanId1).then((res) => {
         console.log(res.data)
-        alert(this.state.loanId1)
+        
         this.setState({ loanApplication: res.data })
         
     })

@@ -59,7 +59,7 @@ export default class ApplyLoan extends Component {
     }
     render() {
         return (
-            <div  style={{backgroundImage:`url(/images/bg-01.jpg)`,width:'100%',height:'38rem'}}>
+            <div className="limiter" style={{backgroundImage:`url(/images/bg-01.jpg)`,width:'100%',height:'38rem'}}>
                 <div className="container-fluid pt-4 pb-5">
                     <div className="row mt-4">
                         <div className="col-sm-8">

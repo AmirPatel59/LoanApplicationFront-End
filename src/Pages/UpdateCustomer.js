@@ -7,7 +7,8 @@ import ViewLoanCustomer from '../Component/ViewLoanCustomer'
 import CustomerService from '../Services/CustomerService'
 import Bgimg from '../Assets/Login/images/bg-01.jpg'
 import Profile from '../Component/Profile'
-export default class LoanApplication extends Component {
+import Update from '../Component/Update'
+export default class UpdateCustomer extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -84,7 +85,7 @@ export default class LoanApplication extends Component {
                         <div className="col-sm-4">
                             <div className="card">
                                 <div className="card-body">
-                                    <Profile></Profile>
+                                    <Update></Update>
                                     {/* <!-- Button trigger modal --> */}
                                     {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal

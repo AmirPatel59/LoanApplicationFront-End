@@ -44,7 +44,7 @@ export default class Profile extends Component {
                 </div>
                 <div className="row mt-4 mb-5" >
                         <div className="col-sm-6 text-center" >
-                            <button className="btn btn-outline-primary" >UPDATE</button>
+                            <NavLink to="/updateCustomer"><button className="btn btn-outline-primary">UPDATE</button></NavLink>
                         </div>
                         <div className="col-sm-6 text-center">
                         <NavLink to='/' style={{color:'white'}}><button className="btn btn-outline-danger" onClick={this.logout}>Logout</button></NavLink>
