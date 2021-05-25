@@ -10,6 +10,7 @@ import React, { Component } from 'react'
    {
        return axios.post(`http://localhost:8080/loanApplication/customer/addCustomer`,customer);
    }
+
    viewCustomer(customerId){
        return axios.get(`http://localhost:8080/loanApplication/viewLoanApplicationByCustId/${customerId}`)
    }
@@ -22,5 +23,6 @@ import React, { Component } from 'react'
    updateCustomer(customer){
        return axios.put(`http://localhost:8080/loanApplication/customer/updateCustomer`,customer)
    }
+
 }
 export default new CustomerService;
