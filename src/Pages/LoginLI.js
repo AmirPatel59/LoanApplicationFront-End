@@ -39,11 +39,11 @@ export default class LoginLI extends Component {
 
     login=(e)=>{
         e.preventDefault();
-        alert(this.state.email)
-        alert(this.state.password)
+        
         LoanIssuerService.Login(this.state.email,this.state.password).then((response)=>{
             alert(response.data)
             console.log(response.data)
+            this.props.history.push("viewAllLoans")
         });
     }
 
