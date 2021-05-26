@@ -27,6 +27,7 @@ export default class ViewAllLoans extends Component {
             <div>
                 <div className="container-fluid mt-4 " >
                     <div className="shadow-lg p-3 mb-5 bg-white rounded" style={{ backgroundImage: `url('/images/bg-01.jpg')` }}>
+<<<<<<< HEAD
                         <div className="row">
                             <div className="col-sm-10">
                             <h3 className="fst-normal text-center mb-4"><b>Customer Loan Applications</b></h3>
@@ -36,6 +37,9 @@ export default class ViewAllLoans extends Component {
                             </div>
                         </div>
                         
+=======
+                        <h3 className="fst-normal text-center mb-4"><b>Customer Loan Applications</b></h3>
+>>>>>>> dc449afd9a96fc58164b706e5d39abbcf21c3ad1
                         <div className="card">
                             <div className="card-body">
 

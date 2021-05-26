@@ -5,7 +5,10 @@ class LoanIssuerService extends Component {
     Login(email,password) {
         return axios.get(`http://localhost:8080/login/${email}/${password}`);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dc449afd9a96fc58164b706e5d39abbcf21c3ad1
     viewAllLoans(){
         return axios.get(`http://localhost:8080/viewAllLoanApplications`);
     }
@@ -15,7 +18,10 @@ class LoanIssuerService extends Component {
     setStatus(loanId,status){
         return axios.put(`http://localhost:8080/setStatus/${loanId}/${status}`);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> dc449afd9a96fc58164b706e5d39abbcf21c3ad1
 }
 export default new LoanIssuerService;
 

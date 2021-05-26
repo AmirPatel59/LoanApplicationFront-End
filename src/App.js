@@ -6,11 +6,13 @@ import { BrowserRouter as Router,Route, Switch } from 'react-router-dom';
 import Register from './Component/Register';
 import ViewAllLoans from '../src/Component/ViewAllLoans'
 import ViewLoan from './Component/ViewLoan';
+
 import LoanApplication from './Pages/LoanApplication';
 import ApplyLoan from './Component/ApplyLoan';
 import Profile from './Component/Profile';
 import Navbar from './Component/Navbar';
 import UpdateCustomer from './Pages/UpdateCustomer';
+
 
 
 
@@ -29,6 +31,7 @@ function App() {
        <Route path="/profile" component={Profile}></Route>
        <Route path='/navbar' component={Navbar}></Route>
        <Route path="/updateCustomer" component={UpdateCustomer}></Route>
+
      </Switch>
      </Router>
     </div>
