@@ -14,6 +14,7 @@ import Navbar from './Component/Navbar';
 import UpdateCustomer from './Pages/UpdateCustomer';
 
 
+
 function App() {
   return (
     <div className="App">
